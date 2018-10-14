@@ -49,7 +49,7 @@ class job51():
             detail_url = div.xpath('p/span/a/@href')[0]
             salary = salary[0] if salary else '面议'
             if(self.collection.find_one({'url':detail_url})):
-                print(u'已经爬取')
+                print(u'已经爬取,跳过！！')
             else:
                 self.collection.insert_one({'职位':name,'公司':company,'区域':area,'工资范围':salary,'发布时间':pub_time,'url':detail_url})
 
@@ -64,7 +64,7 @@ class job51():
         for job in self.collection.find():
             jobname.append(job['职位'])
         job_name = ''.join(jobname)
-        my_wordcloud = WordCloud(max_words=100,width=1600,height=800,font_path="C:\\Windows\\Fonts\\msyh.ttf",random_state=30).generate(job_name)
+        my_wordcloud = WordCloud(max_words=100,width=1600,height=800,font_path=r"C:\Windows\Fonts\msyh.ttf",random_state=30).generate(job_name)
         my_wordcloud.to_file('softEng.png')
         plt.imshow(my_wordcloud)
         plt.axis('off')
@@ -75,5 +75,5 @@ class job51():
 
 job = job51()
 # job.get_pages()
-# job.run()
-job.yuntu()
+job.run()
+# job.yuntu()

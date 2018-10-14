@@ -18,3 +18,4 @@ class jiandanSpider(scrapy.Spider):
         # print 'new_url',new_url
         if new_url:
             yield scrapy.Request(new_url,callback=self.parse)
+
